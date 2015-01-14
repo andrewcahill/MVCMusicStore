@@ -29,5 +29,7 @@ namespace MVCMusicStore.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<MVCMusicStore.Models.Album> Albums { get; set; }
     }
 }

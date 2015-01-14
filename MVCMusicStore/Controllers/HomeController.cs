@@ -17,6 +17,8 @@ namespace MVCMusicStore.Controllers
         {
             ViewBag.Message = "Your application description page.";
 
+            //ViewData["Message"] = "ViewData.";
+
             return View();
         }
 
@@ -25,6 +27,30 @@ namespace MVCMusicStore.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult Search(int id)
+        {
+            IEnumerable<Models.Album> models = null;
+
+
+
+
+            if (ModelState.IsValid)
+            {
+
+                List<Models.Album> albums = new List<Models.Album>();
+
+                for (int i = 0; i < 10; i++)
+                {
+                    //albums.Add(new MVCMusicStore.Models.Album { AlbumId = i, Name = "Name " + i });
+                }
+
+                models = from a in albums where a.AlbumId.Equals(id) select a;
+            }
+
+            return View(models);
         }
     }
 }

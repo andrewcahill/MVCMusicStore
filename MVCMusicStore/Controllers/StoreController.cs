@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVCMusicStore.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,8 +17,19 @@ namespace MVCMusicStore.Controllers
 
         public string Browse(string genre)
         {
+            // sanitize user input - case of scripting
             string message = HttpUtility.HtmlEncode("Store.Browse, Genre = " + genre);
             return message;
+
+            //var albums = new List<Album>();
+
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    albums.Add(new Album { Id = i, Name = "Album " + i });
+            //}
+
+            //return View(albums);
+
         }
 
         public string Details(int id)
