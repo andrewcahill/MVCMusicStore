@@ -37,6 +37,7 @@ namespace MVCMusicStore.Controllers
         }
 
         // GET: StoreManager/Create
+        //[Authorize(Roles="Administrators")]
         public ActionResult Create()
         {
             ViewBag.ArtistId = new SelectList(db.Artists, "ArtistId", "Name");
@@ -53,9 +54,18 @@ namespace MVCMusicStore.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Albums.Add(album);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+
+                    db.Albums.Add(album);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("Error", ex.Message);
+                    return View(album);
+                }
             }
 
             ViewBag.ArtistId = new SelectList(db.Artists, "ArtistId", "Name", album.ArtistId);

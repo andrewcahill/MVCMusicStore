@@ -26,7 +26,20 @@
         <th>
             @Html.DisplayNameFor(model => model.AlbumArtUrl)
         </th>
-        <th></th>
+
+        <th>
+            @Html.TextArea("text", "hello <br/> world")
+        </th>
+
+        <th>
+            @Html.RadioButton("Color", "Red")
+
+            @Html.Password("UserPassword")
+
+            @Html.CheckBox("Remember")
+        </th>
+       
+
     </tr>
 
 @foreach (var item in Model) {
@@ -54,4 +67,19 @@
     </tr>
 }
 
+
+
+
+
+
 </table>
+
+
+
+
+
+@using (Html.BeginForm("Search", "Home", FormMethod.Get, new { target = "_blank" }))
+{
+    <input type="text" name="q" />
+    <input type="submit" value="Search" />
+}
